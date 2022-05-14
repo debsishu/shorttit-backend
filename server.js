@@ -4,7 +4,7 @@ const cors = require("cors");
 const ShortUrl = require("./models/shortUrl");
 const app = express();
 
-require('dotenv').config();
+require("dotenv").config();
 
 const DB = process.env.DB_KEY;
 
@@ -19,6 +19,10 @@ mongoose
     console.log("Connection Successful");
   })
   .catch((err) => console.log(err));
+
+app.get("/", cors(), (req, res) => {
+  res.status(200).json("Welcome to Shorttit Backend");
+});
 
 app.get("/api/", cors(), async (req, res) => {
   await ShortUrl.create({
